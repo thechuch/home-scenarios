@@ -37,7 +37,8 @@
   #shell{display:none;flex-direction:column;height:100%;}
   #shell.on{display:flex;}
   nav{flex:0 0 auto;display:flex;align-items:center;gap:2px;padding:6px 9px;background:#fff;
-    border-bottom:1px solid #edf0ed;}
+    border-bottom:1px solid #edf0ed;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  nav::-webkit-scrollbar{display:none;}
   nav .mark{width:7px;height:7px;border-radius:50%;background:#c9d3cd;margin:0 8px 0 4px;flex:0 0 auto;}
   nav a{font-size:12.5px;color:#9aa39d;padding:6px 10px;border-radius:8px;cursor:pointer;user-select:none;
     letter-spacing:.2px;white-space:nowrap;}
@@ -70,6 +71,7 @@
       <a data-k="calc" class="on">Scenarios</a>
       <a data-k="talk">Talk</a>
       <a data-k="notes">Notes</a>
+      <a data-k="plan">Plan</a>
       <a data-k="letter">Letter</a>
       <span class="spin" id="spin"></span>
     </nav>
