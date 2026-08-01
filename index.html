@@ -68,7 +68,8 @@
   <div id="shell">
     <nav id="nav">
       <span class="mark"></span>
-      <a data-k="calc" class="on">Scenarios</a>
+      <a data-k="live" class="on">Live</a>
+      <a data-k="calc">Scenarios</a>
       <a data-k="talk">Talk</a>
       <a data-k="notes">Notes</a>
       <a data-k="plan">Plan</a>
@@ -105,18 +106,18 @@
   function enterApp(){
     $('#gate').style.display = 'none';
     $('#shell').classList.add('on');
-    openTool('calc');
+    openTool('live');
   }
   $('#nav').addEventListener('click', e => { const a = e.target.closest('a'); if(a) openTool(a.dataset.k); });
   $('#f').addEventListener('submit', async e => {
     e.preventDefault();
     $('#err').textContent = 'Unlocking…';
     PW = $('#pw').value;
-    try { await decryptTool('calc'); sessionStorage.setItem('hk', PW); enterApp(); }
+    try { await decryptTool('live'); sessionStorage.setItem('hk', PW); enterApp(); }
     catch(_) { $('#err').textContent = 'Wrong password, try again.'; }
   });
   // stay unlocked across reloads/navigation within the same tab
-  (async () => { if(PW){ try { await decryptTool('calc'); enterApp(); } catch(_) { sessionStorage.removeItem('hk'); PW = null; } } })();
+  (async () => { if(PW){ try { await decryptTool('live'); enterApp(); } catch(_) { sessionStorage.removeItem('hk'); PW = null; } } })();
 </script>
 </body>
 </html>
