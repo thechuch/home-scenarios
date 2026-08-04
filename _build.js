@@ -11,7 +11,7 @@ const PASSWORD = '7505brown';
 const ITER = 200000;
 const DIR = __dirname;
 const SRC = path.join(DIR, '_src');
-const TOOLS = ['calc', 'talk', 'notes', 'letter', 'plan', 'live'];
+const TOOLS = ['calc', 'talk', 'notes', 'letter', 'plan', 'live', 'case'];
 
 async function keyFor(salt, iters, usages) {
   const baseKey = await subtle.importKey('raw', new TextEncoder().encode(PASSWORD), 'PBKDF2', false, ['deriveKey']);
