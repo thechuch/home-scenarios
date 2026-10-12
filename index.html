@@ -68,15 +68,16 @@
   <div id="shell">
     <nav id="nav">
       <span class="mark"></span>
-      <a data-k="today" class="on">Today</a>
+      <a data-k="planner" class="on">Scenarios</a>
+      <a data-k="today">Today</a>
       <a data-k="live">Live</a>
       <a data-k="outline">Outline</a>
-      <a data-k="calc">Scenarios</a>
       <a data-k="case">Case</a>
       <a data-k="talk">Talk</a>
       <a data-k="notes">Notes</a>
       <a data-k="plan">Plan</a>
       <a data-k="letter">Letter</a>
+      <a data-k="calc">Earlier calculator</a>
       <span class="spin" id="spin"></span>
     </nav>
     <iframe id="frame" title="tool"></iframe>
@@ -109,9 +110,11 @@
   function enterApp(){
     $('#gate').style.display = 'none';
     $('#shell').classList.add('on');
-    openTool('today');
+    const requested = location.hash.slice(1);
+    const allowed = [...document.querySelectorAll('nav a')].map(a => a.dataset.k);
+    openTool(allowed.includes(requested) ? requested : 'planner');
   }
-  $('#nav').addEventListener('click', e => { const a = e.target.closest('a'); if(a) openTool(a.dataset.k); });
+  $('#nav').addEventListener('click', e => { const a = e.target.closest('a'); if(a) { history.replaceState(null, '', '#' + a.dataset.k); openTool(a.dataset.k); } });
   $('#f').addEventListener('submit', async e => {
     e.preventDefault();
     $('#err').textContent = 'Unlocking…';
